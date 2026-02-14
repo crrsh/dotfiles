@@ -29,6 +29,10 @@ bind -M default ctrl-f accept-autosuggestion
 bind -M insert ctrl-enter accept-autosuggestion execute
 bind -M default ctrl-enter accept-autosuggestion execute
 
+# Use built in history pager
+bind -M insert ctrl-r history-pager
+bind -M default ctrl-r history-pager
+
 # Abbreviations
 abbr -a gb 'git branch'
 abbr -a gs 'git status'
