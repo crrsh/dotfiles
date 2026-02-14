@@ -5,6 +5,9 @@ end
 # Disable user greeting
 set fish_greeting
 
+# Add uv tools to PATH
+fish_add_path $HOME/.local/bin
+
 # Use vi bindings
 fish_vi_key_bindings
 
