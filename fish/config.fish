@@ -5,6 +5,12 @@ end
 # Disable user greeting
 set fish_greeting
 
+# Defaults
+if type -q nvim
+    set -gx EDITOR "nvim"
+    set -gx VISUAL "nvim"
+end
+
 # Add uv tools to PATH
 fish_add_path $HOME/.local/bin
 
