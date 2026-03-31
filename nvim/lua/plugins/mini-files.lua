@@ -1,50 +1,36 @@
 return {
 	"nvim-mini/mini.files",
 	dependencies = { "nvim-mini/mini.icons", opts = {} },
-	version = "*",
 	keys = {
 		{
 			"-",
 			function()
-				if not require("mini.files").close() then
-					MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+				local mini_files = require("mini.files")
+				if not mini_files.close() then
+					local path = vim.api.nvim_buf_get_name(0)
+					if vim.fn.filereadable(path) == 0 then
+						path = vim.fn.fnamemodify(path, ":h")
+					end
+					mini_files.open(path, false)
 				end
 			end,
-			desc = "Toggle mini.files (buf dir)",
+			desc = "Toggle mini.files (target buf dir)",
 		},
 		{
 			"<leader>-",
 			function()
-				require("mini.files").open(vim.loop.cwd(), true)
+				require("mini.files").open(vim.uv.cwd(), false)
 			end,
-			desc = "Open mini.files (cwd)",
+			desc = "Open mini.files (target cwd)",
 		},
 	},
 	opts = {
 		mappings = {
-			go_in = "",
+			go_in = "L",
 			go_in_plus = "l",
-			-- go_out = "",
-			-- go_out_plus = "h",
-		},
-		options = {
-			use_as_default_explorer = true,
-			permanent_delete = false,
 		},
 		windows = {
 			width_focus = 30,
-			width_nofocus = 15, -- default
 		},
 	},
-	init = function()
-		vim.api.nvim_create_autocmd("User", {
-			pattern = "MiniFilesWindowOpen",
-			callback = function(args)
-				local win_id = args.data.win_id
-				local config = vim.api.nvim_win_get_config(win_id)
-				config.border = "rounded"
-				vim.api.nvim_win_set_config(win_id, config)
-			end,
-		})
-	end,
 }
