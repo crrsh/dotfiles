@@ -2,7 +2,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,
-		build = "TSUpdate",
+		build = ":TSUpdate",
 		config = function()
 			local parsers = {
 				"bash",
