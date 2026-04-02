@@ -103,9 +103,34 @@ return {
 				move.goto_previous_end("@function.outer", "textobjects")
 			end)
 
+			-- @class.outer
+			vim.keymap.set({ "n", "x", "o" }, "]c", function()
+				move.goto_next_start("@class.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "]C", function()
+				move.goto_next_end("@class.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "[c", function()
+				move.goto_previous_start("@class.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "[C", function()
+				move.goto_previous_end("@class.outer", "textobjects")
+			end)
+
 			-- @loop.inner, @loop.outer
 			vim.keymap.set({ "n", "x", "o" }, "]o", function()
 				move.goto_next_start({ "@loop.inner", "@loop.outer" }, "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "]o", function()
+				move.goto_previous_start({ "@loop.inner", "@loop.outer" }, "textobjects")
+			end)
+
+			-- @parameter.outer
+			vim.keymap.set({ "n", "x", "o" }, "]a", function()
+				move.goto_next_start("@parameter.outer", "textobjects")
+			end)
+			vim.keymap.set({ "n", "x", "o" }, "[a", function()
+				move.goto_previous_start("@parameter.outer", "textobjects")
 			end)
 
 			-- @condition.outer
