@@ -2,6 +2,6 @@
 return {
 	"windwp/nvim-autopairs",
 	event = "InsertEnter",
-	enabled = vim.fn.has("nvim-0.7.0") == 1,
+	enabled = false,
 	opts = { check_ts = true },
 }

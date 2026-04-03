@@ -28,6 +28,7 @@
 
 return {
 	"saghen/blink.cmp",
+	enabled = false,
 	event = { "InsertEnter", "CmdlineEnter" },
 	version = "*",
 

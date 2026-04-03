@@ -1,5 +1,6 @@
 return {
 	"ibhagwan/fzf-lua",
+	enabled = false,
 	dependencies = { "nvim-mini/mini.icons" },
 	cmd = "FzfLua",
 	keys = {

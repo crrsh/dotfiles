@@ -1,7 +1,7 @@
 return {
 	"kylechui/nvim-surround",
 	event = "VeryLazy",
-	enabled = vim.fn.has("nvim-0.8.0") == 1,
+	enabled = false,
 	opts = {
 		keymaps = { -- TODO: keymaps yet to be confirmed - conflicting with flash.nvim
 			-- i would be fine with defaults if i can settle on a different keymap for flash jump()

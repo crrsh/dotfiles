@@ -1,5 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
+	enabled = false,
 	dependencies = { "nvim-mini/mini.icons" },
 	event = "UIEnter",
 	config = function()
