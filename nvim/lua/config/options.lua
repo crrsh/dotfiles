@@ -10,31 +10,42 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
 -- relative file numbers
+vim.opt.relativenumber = true
 vim.opt.number = true
+
+-- enable cursorline
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
-vim.opt.relativenumber = true
+
+-- disable line wrapping so long lines extend off-screen
+vim.opt.wrap = false
+
+-- don't create swap files
+vim.opt.swapfile = false
+
+-- persist undo history across sessions
+vim.opt.undofile = true
 
 -- display all effects of a substitution in split panel
 vim.opt.inccommand = "split"
 
--- decrease for better perceived lsp performance
-vim.opt.updatetime = 500
+-- decrease for better perceived performance
+vim.opt.updatetime = 1000
 
 -- keep cursor centered
 vim.opt.scrolloff = 8
 
--- preview substitutions as you type
-vim.opt.inccommand = "split"
-
--- make jumplist behave like tagstack and maintain cursor position after jumps and <C-o>
+-- make jumplist behave like a stack (like tagstack) and restore cursor position on <C-o>
 vim.opt.jumpoptions = "stack,view"
 
--- disable scrolling with mouse
+-- disable horizontal mouse scrolling
 vim.opt.mousescroll = "hor:0"
 
 -- signcolumn always on to prevent buffer contents shifting
 vim.opt.signcolumn = "yes:1"
 
--- prevent buffer from moving when creating horizontal splits
+-- keep buffer contents in the same position when opening horizontal splits
 vim.opt.splitkeep = "screen"
+
+-- hide the command line when not in use
+vim.opt.cmdheight = 0
