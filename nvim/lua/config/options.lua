@@ -49,3 +49,6 @@ vim.opt.splitkeep = "screen"
 
 -- hide the command line when not in use
 vim.opt.cmdheight = 0
+
+-- update buffer content when modified externally
+vim.opt.autoread = true
