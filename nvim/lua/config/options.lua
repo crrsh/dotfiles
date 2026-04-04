@@ -1,8 +1,3 @@
-vim.opt.termguicolors = true
-vim.opt.wrap = false
-vim.opt.swapfile = false
-vim.opt.undofile = true
-
 -- spaces > tabs
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
