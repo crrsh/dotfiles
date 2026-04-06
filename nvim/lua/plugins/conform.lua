@@ -1,12 +1,9 @@
 return {
 	"stevearc/conform.nvim",
-	enabled = false,
 	event = "BufWritePre",
 	cmd = "ConformInfo",
 	keys = {
 		{ "<leader>cf", "<cmd>Format<cr>", mode = { "n", "x" }, silent = true, desc = "Format buffer or range" },
-		{ "<leader>tf", "<cmd>AutoFormat<cr>", desc = "Toggle auto format on save" },
-		{ "<leader>tF", "<cmd>AutoFormat buffer<cr>", desc = "Togle auto format on save for current buffer" },
 	},
 	opts = {
 		formatters_by_ft = {
@@ -14,18 +11,17 @@ return {
 			python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
 			markdown = { "injected" },
 			["_"] = { "trim_whitespace" },
-			-- TODO: test this one out
-			-- ["*"] = { "codespell" },
 		},
 		default_format_opts = { lsp_format = "fallback" },
 		format_on_save = function(bufnr)
-			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-				return
+			if vim.g.autoformat and vim.b[bufnr].autoformat ~= false then
+				return { timeout_ms = 500 }
 			end
-			return { timeout_ms = 500 }
 		end,
 	},
 	init = function()
+		vim.g.autoformat = true
+
 		vim.api.nvim_create_user_command("Format", function(args)
 			local range = nil
 			if args.count ~= -1 then
@@ -38,22 +34,31 @@ return {
 			require("conform").format({ async = true, range = range })
 		end, { range = true, desc = "Format buffer or range" })
 
-		vim.api.nvim_create_user_command("AutoFormat", function(args)
-			local buf = args.args == "buffer"
+		vim.api.nvim_create_user_command("FormatToggle", function(args)
 			local opt = vim.g
-			if buf then
+			if args.bang then
 				opt = vim.b
 			end
-			opt.disable_autoformat = not opt.disable_autoformat
-			local status = opt.disable_autoformat and "off" or "on"
-			local bufname = buf and " [" .. vim.fn.expand("%:t") .. "]" or ""
+			opt.autoformat = opt.autoformat == false
+			local status = opt.autoformat and "on" or "off"
+			local bufname = args.bang and " [" .. vim.fn.expand("%:t") .. "]" or ""
 			vim.notify("Autoformat " .. status .. bufname, vim.log.levels.INFO)
-		end, {
-			nargs = "?",
-			complete = function()
-				return { "buffer" }
-			end,
-			desc = "Toggle autoformat (global or buffer)",
-		})
+		end, { bang = true, desc = "Toggle autoformat" })
+
+		vim.api.nvim_create_user_command("FormatEnable", function(args)
+			if args.bang then
+				vim.b.autoformat = true
+			else
+				vim.g.autoformat = true
+			end
+		end, { bang = true, desc = "Enable autoformat" })
+
+		vim.api.nvim_create_user_command("FormatDisable", function(args)
+			if args.bang then
+				vim.b.autoformat = false
+			else
+				vim.g.autoformat = false
+			end
+		end, { bang = true, desc = "Disable autoformat" })
 	end,
 }
