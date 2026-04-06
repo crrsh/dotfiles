@@ -27,6 +27,9 @@ require("lazy").setup({
 		{ import = "plugins" },
 	},
 	ui = { border = "rounded" },
+	install = {
+		colorscheme = { vim.g.colors_name, "default" },
+	},
 	-- automatically check for plugin updates
 	checker = { enabled = true, notify = false },
 })
