@@ -1,6 +1,7 @@
 return {
 	"otavioschwanck/arrow.nvim",
 	dependencies = { "echasnovski/mini.icons" },
+	keys = { ";", "m" },
 	opts = {
 		leader_key = ";",
 		buffer_leader_key = "m",
