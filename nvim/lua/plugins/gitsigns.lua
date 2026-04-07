@@ -1,7 +1,7 @@
 return {
 	"lewis6991/gitsigns.nvim",
 	event = { "BufReadPre", "BufNewFile" },
-	enabled = vim.fn.has("nvim-0.9.0") == 1,
+  -- stylua: ignore
 	keys = {
     -- stage/unstage/reset hunks
 		{ "<leader>hs", "<cmd>Gitsigns stage_hunk<cr>" },
@@ -16,15 +16,12 @@ return {
 		{ "<leader>hi", "<cmd>Gitsigns preview_hunk_inline<cr>" },
 
     -- more detailed blame
-		{ "<leader>hb", function() require("gitsigns").blame_line({ full = true }) end },
+		{ "<leader>b", function() require("gitsigns").blame_line({ full = true }) end },
 
     -- diffs
+    -- TODO: codediff.nvim instead?
 		{ "<leader>hd", "<cmd>Gitsigns diffthis<cr>" },
 		{ "<leader>hD", function() require("gitsigns").diffthis("~") end },
-
-    -- quickfix list
-		{ "<leader>hq", "<cmd>Gitsigns setqflist<cr>" },
-    { "<leader>hQ", function() require("gitsigns").setqflist("all") end },
 
 		-- hunk as a textobject
 		{ "ih", "<cmd>Gitsigns select_hunk<cr>", mode = { "x", "o" } },
@@ -34,10 +31,6 @@ return {
     { "]h", "<cmd>Gitsigns nav_hunk next<cr>" },
 		{ "[H", "<cmd>Gitsigns nav_hunk first<cr>" },
 		{ "]H", "<cmd>Gitsigns nav_hunk last<cr>" },
-
-    -- toggles
-    { "<leader>tb", "<cmd>Gitsigns toggle_current_line_blame<cr>" },
-    { "<leader>tw", "<cmd>Gitsigns toggle_word_diff<cr>" },
 	},
 	opts = {
 		signs = {
