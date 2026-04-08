@@ -1,19 +1,18 @@
 return {
 	{
 		"mason-org/mason.nvim",
-		cmd = "Mason",
+		cmd = { "Mason", "MasonInstall", "MasonLog", "MasonUninstall", "MasonUninstallAll", "MasonUpdate" },
 		build = ":MasonUpdate",
 		opts = {
-			pip = { upgrade_pip = true },
+			-- NOTE: waiting on https://github.com/mason-org/mason.nvim/pull/1640
+			-- pip = { use_uv = true },
 			ui = {
-				border = "rounded",
 				height = 0.8,
 				icons = {
 					package_installed = "●",
 					package_pending = "○",
 					package_uninstalled = "○",
 				},
-				keymaps = { toggle_help = "?" },
 			},
 		},
 	},
@@ -28,9 +27,20 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
+		init = function()
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				callback = function()
+					vim.api.nvim_set_hl(
+						0,
+						"DiagnosticUnderlineHint",
+						{ undercurl = false, underline = false, update = true }
+					)
+				end,
+			})
+		end,
 		config = function()
 			vim.diagnostic.config({
-				virtual_text = false,
+				virtual_text = { current_line = true },
 				update_in_insert = true,
 				severity_sort = true,
 				signs = {
@@ -41,17 +51,13 @@ return {
 						[vim.diagnostic.severity.HINT] = "",
 					},
 					numhl = {
-						[vim.diagnostic.severity.ERROR] = "DiagnosticVirtualTextError",
-						[vim.diagnostic.severity.WARN] = "DiagnosticVirtualTextWarn",
-						[vim.diagnostic.severity.INFO] = "DiagnosticVirtualTextInfo",
-						[vim.diagnostic.severity.HINT] = "DiagnosticVirtualTextHint",
+						[vim.diagnostic.severity.ERROR] = "DiagnosticError",
+						[vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+						[vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+						[vim.diagnostic.severity.HINT] = "DiagnosticHint",
 					},
 				},
-				float = {
-					header = "",
-					-- border = "rounded",
-					source = "if_many",
-				},
+				float = { source = "if_many" },
 			})
 		end,
 	},
