@@ -1,5 +1,4 @@
 -- disable defaults
-vim.keymap.set("n", "<cr>", "<nop>")
 vim.keymap.set("n", "<bs>", "<nop>")
 vim.keymap.set("n", "<space>", "<nop>")
 
