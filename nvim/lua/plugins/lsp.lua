@@ -59,6 +59,14 @@ return {
 				},
 				float = { source = "if_many" },
 			})
+
+			vim.lsp.config("ruff", {
+				init_options = {
+					settings = {
+						showSyntaxErrors = false, -- leave this to ty
+					},
+				},
+			})
 		end,
 	},
 	{
