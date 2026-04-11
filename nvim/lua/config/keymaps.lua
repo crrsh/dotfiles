@@ -86,3 +86,6 @@ vim.keymap.set({ "n", "x", "o" }, "k", "gk")
 -- move cursor in insert mode
 vim.keymap.set("i", "<c-h>", "<c-o>h")
 vim.keymap.set("i", "<c-l>", "<c-o>a")
+
+-- quickly disable hlsearch
+vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>")
