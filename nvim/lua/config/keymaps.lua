@@ -88,4 +88,7 @@ vim.keymap.set("i", "<c-h>", "<c-o>h")
 vim.keymap.set("i", "<c-l>", "<c-o>a")
 
 -- quickly disable hlsearch
-vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>")
+vim.keymap.set("n", "<esc>", function()
+	vim.cmd("nohlsearch")
+	vim.api.nvim_exec_autocmds("User", { pattern = "NoHlSearch" })
+end)

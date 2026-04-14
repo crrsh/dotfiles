@@ -28,5 +28,11 @@ return {
 				require("lualine").refresh()
 			end,
 		})
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "NoHlSearch",
+			callback = function()
+				require("lualine").refresh()
+			end,
+		})
 	end,
 }
