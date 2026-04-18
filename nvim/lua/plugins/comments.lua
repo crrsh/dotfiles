@@ -20,6 +20,15 @@ return {
       { "<leader>xt", "<cmd>:Trouble todo toggle<cr>", desc = "Trouble todo" },
 		},
 		opts = {
+			keywords = {
+				FIX = { alt = { "fix", "fixme", "bug", "fixit", "issue" } },
+				TODO = { alt = { "todo" } },
+				HACK = { alt = { "hack" } },
+				WARN = { alt = { "warn", "warning", "xxx" } },
+				PERF = { alt = { "perf", "optim", "performance", "optimize" } },
+				NOTE = { alt = { "note", "info" } },
+				TEST = { alt = { "test", "testing", "passed", "failed" } },
+			},
 			signs = false,
 			highlight = {
 				keyword = "wide_fg",
