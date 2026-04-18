@@ -77,8 +77,8 @@ return {
 			},
 		},
 		keymap = {
-			["<C-u>"] = { "scroll_documentation_up", "fallback" },
-			["<C-d>"] = { "scroll_documentation_down", "fallback" },
+			["<C-space>"] = { "show_documentation", "hide_documentation" },
+			["<C-n>"] = { "show", "select_next", "fallback_to_mappings" },
 			["<C-s>"] = {
 				function(cmp)
 					cmp.show({ providers = { "snippets" } })
