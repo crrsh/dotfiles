@@ -5,6 +5,8 @@ return {
 	opts = {
 		leader_key = ";",
 		buffer_leader_key = "m",
+		toggle = "a",
+		open_horizontal = "s",
 		hide_handbook = true,
 		hide_buffer_handbook = true,
 	},
