@@ -25,6 +25,9 @@ return {
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
+		enabled = function()
+			return not vim.tbl_contains({ "minifiles" }, vim.bo.filetype)
+		end,
 		sources = {
 			default = { "lsp", "path" },
 			-- https://cmp.saghen.dev/recipes#exclude-keywords-constants-from-autocomplete
