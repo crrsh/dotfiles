@@ -27,6 +27,18 @@ return {
 	opts = {
 		sources = {
 			default = { "lsp", "path" },
+			-- https://cmp.saghen.dev/recipes#exclude-keywords-constants-from-autocomplete
+			providers = {
+				lsp = {
+					name = "LSP",
+					module = "blink.cmp.sources.lsp",
+					transform_items = function(_, items)
+						return vim.tbl_filter(function(item)
+							return item.kind ~= require("blink.cmp.types").CompletionItemKind.Keyword
+						end, items)
+					end,
+				},
+			},
 		},
 		completion = {
 			menu = {
