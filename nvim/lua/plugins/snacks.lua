@@ -5,7 +5,9 @@ return {
 	---@type snacks.Config
 	opts = {
 		picker = {},
-		explorer = {},
+		explorer = {
+			replace_netrw = false,
+		},
 	},
   -- stylua: ignore
 	keys = {
