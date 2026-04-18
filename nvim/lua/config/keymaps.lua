@@ -92,3 +92,11 @@ vim.keymap.set("n", "<esc>", function()
 	vim.cmd("nohlsearch")
 	vim.api.nvim_exec_autocmds("User", { pattern = "NoHlSearch" })
 end)
+
+-- jump between diagnostics
+vim.keymap.set("n", "]d", function()
+	vim.diagnostic.jump({ count = 1 })
+end, { desc = "Next Diagnostic" })
+vim.keymap.set("n", "[d", function()
+	vim.diagnostic.jump({ count = -1 })
+end, { desc = "Prev Diagnostic" })

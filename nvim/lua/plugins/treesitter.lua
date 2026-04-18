@@ -134,12 +134,12 @@ return {
 			end)
 
 			-- @condition.outer
-			vim.keymap.set({ "n", "x", "o" }, "]d", function()
-				move.goto_next("@conditional.outer", "textobjects")
-			end)
-			vim.keymap.set({ "n", "x", "o" }, "[d", function()
-				move.goto_previous("@conditional.outer", "textobjects")
-			end)
+			-- vim.keymap.set({ "n", "x", "o" }, "]d", function()
+			-- 	move.goto_next("@conditional.outer", "textobjects")
+			-- end)
+			-- vim.keymap.set({ "n", "x", "o" }, "[d", function()
+			-- 	move.goto_previous("@conditional.outer", "textobjects")
+			-- end)
 
 			-- @local.scope
 			vim.keymap.set({ "n", "x", "o" }, "]s", function()
