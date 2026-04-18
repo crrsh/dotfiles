@@ -15,6 +15,9 @@ return {
 	},
 	opts = {
 		modes = {
+			diagnostics = {
+				auto_close = true,
+			},
 			symbols = {
 				win = { size = { width = 50 } },
 			},
