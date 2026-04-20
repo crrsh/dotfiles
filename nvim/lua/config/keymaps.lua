@@ -31,11 +31,7 @@ vim.keymap.set("n", "}", "}zz")
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+Y')
 vim.keymap.set("n", "<leader>p", '"+p')
-vim.keymap.set("n", "<leader>P", '"+P')
-
--- don't yank on put
-vim.keymap.set("x", "p", '"_dP')
-vim.keymap.set("x", "<leader>p", '"_d"+P')
+vim.keymap.set({ "n", "x" }, "<leader>P", '"+P')
 
 -- paste charwise on new line
 local function paste_on_new_line(cmd)
