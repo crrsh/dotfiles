@@ -1,7 +1,3 @@
--- disable defaults
-vim.keymap.set("n", "<bs>", "<nop>")
-vim.keymap.set("n", "<space>", "<nop>")
-
 -- centered cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
