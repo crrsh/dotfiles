@@ -44,7 +44,9 @@ return {
 			},
 		},
 		completion = {
+			documentation = { window = { border = "none" } },
 			menu = {
+				border = "none",
 				max_height = 8,
 				draw = {
 					columns = { { "kind_icon" }, { "label", gap = 1 } },
@@ -75,6 +77,7 @@ return {
 			enabled = true,
 			trigger = { enabled = false }, -- trigger manually with Ctrl-k
 			window = {
+				border = "none",
 				show_documentation = false,
 				direction_priority = { "n", "s" }, -- keep out of the way of completion menu
 			},

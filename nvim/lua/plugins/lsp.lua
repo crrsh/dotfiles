@@ -57,7 +57,10 @@ return {
 						[vim.diagnostic.severity.HINT] = "DiagnosticHint",
 					},
 				},
-				float = { source = "if_many" },
+				float = {
+					source = "if_many",
+					border = "none",
+				},
 			})
 
 			vim.lsp.config("ruff", {
