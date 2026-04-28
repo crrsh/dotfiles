@@ -24,6 +24,24 @@ return {
 				["u"] = { "keymap.run_action", opts = { action = "unwatch" }, desc = "Unwatch task" },
 				["e"] = { "keymap.run_action", opts = { action = "ensure" }, desc = "Ensure task" },
 			},
+			render = function(task)
+				local render = require("overseer.render")
+				local lines = render.format_standard(task)
+				local tags = {}
+				if not task:has_component("on_complete_dispose") then
+					table.insert(tags, "R")
+				end
+				if task:has_component("restart_on_save") then
+					table.insert(tags, "W")
+				end
+				if task:has_component("on_complete_restart") then
+					table.insert(tags, "E")
+				end
+				if #tags > 0 then
+					table.insert(lines[1], 1, { "[" .. table.concat(tags, "|") .. "] ", "Comment" })
+				end
+				return lines
+			end,
 		},
 	},
 }
