@@ -1,11 +1,38 @@
+local function overseer_action_on_last(action)
+	local overseer = require("overseer")
+	local task_list = require("overseer.task_list")
+	local tasks = overseer.list_tasks({
+		sort = task_list.sort_finished_recently,
+		include_ephemeral = true,
+	})
+	if vim.tbl_isempty(tasks) then
+		vim.notify("No tasks found", vim.log.levels.WARN)
+	else
+		overseer.run_action(tasks[1], action)
+	end
+end
 return {
 	"stevearc/overseer.nvim",
 	cmd = { "OverseerToggle", "OverseerRun", "OverseerShell" },
 	keys = {
-		{ "<leader>oo", "<cmd>OverseerToggle<cr>" },
-		{ "<leader>or", "<cmd>OverseerRun<cr>" },
-		{ "<leader>os", "<cmd>OverseerShell<cr>" },
-		{ "<leader>ot", "<cmd>OverseerTaskAction<cr>" },
+		{ "<leader>oo", "<cmd>OverseerToggle!<cr>", desc = "Overseer toggle" },
+		{ "<leader>or", "<cmd>OverseerRun<cr>", desc = "Overseer run" },
+		{ "<leader>os", "<cmd>OverseerShell<cr>", desc = "Overseer shell" },
+		{ "<leader>ot", "<cmd>OverseerTaskAction<cr>", desc = "Overseer task action" },
+		{
+			"<leader>od",
+			function()
+				overseer_action_on_last()
+			end,
+			desc = "Overseer do quick action",
+		},
+		{
+			"<leader>oR",
+			function()
+				overseer_action_on_last("restart")
+			end,
+			desc = "Overseer do quick restart",
+		},
 	},
 	---@module 'overseer'
 	---@type overseer.SetupOpts
