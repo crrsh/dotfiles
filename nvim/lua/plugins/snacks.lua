@@ -3,12 +3,6 @@ return {
 	priority = 1000,
 	lazy = false,
 	---@type snacks.Config
-	opts = {
-		picker = {},
-		explorer = {
-			replace_netrw = false,
-		},
-	},
   -- stylua: ignore
 	keys = {
 		-- Top Pickers & Explorer
@@ -74,5 +68,16 @@ return {
 		-- { "gao", function() Snacks.picker.lsp_outgoing_calls() end, desc = "C[a]lls Outgoing" },
 		-- { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
 		-- { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+	},
+	opts = {
+		picker = {
+			ui_select = true,
+			main = {
+				file = false,
+			},
+		},
+		explorer = {
+			replace_netrw = false,
+		},
 	},
 }
