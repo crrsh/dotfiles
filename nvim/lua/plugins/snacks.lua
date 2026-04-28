@@ -79,5 +79,20 @@ return {
 		explorer = {
 			replace_netrw = false,
 		},
+		input = {
+			win = {
+				row = 0.4,
+				keys = {
+					i_up = { "<c-p>", { "hist_up" }, mode = { "i", "n" } },
+					i_down = { "<c-n>", { "hist_down" }, mode = { "i", "n" } },
+				},
+			},
+		},
 	},
+	init = function()
+		vim.api.nvim_set_hl(0, "SnacksInputNormal", { link = "NormalFloat" })
+		vim.api.nvim_set_hl(0, "SnacksInputBorder", { link = "FloatBorder" })
+		vim.api.nvim_set_hl(0, "SnacksInputTitle", { link = "FloatTitle" })
+		vim.api.nvim_set_hl(0, "SnacksInputIcon", { link = "FloatBorder" })
+	end,
 }
