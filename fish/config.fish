@@ -21,9 +21,11 @@ fish_vi_key_bindings
 bind -M insert ctrl-p up-or-search
 bind -M insert ctrl-n down-or-search
 bind -M insert ctrl-f accept-autosuggestion
+bind -M insert ctrl-g suppress-autosuggestion
 bind -M default ctrl-p up-or-search
 bind -M default ctrl-n down-or-search
 bind -M default ctrl-f accept-autosuggestion
+bind -M default ctrl-g suppress-autosuggestion
 
 # Immediately execute autosuggestions
 bind -M insert ctrl-enter accept-autosuggestion execute
