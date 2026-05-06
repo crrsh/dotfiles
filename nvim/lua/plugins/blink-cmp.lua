@@ -79,7 +79,15 @@ return {
 			window = {
 				border = "none",
 				show_documentation = false,
-				direction_priority = { "n", "s" }, -- keep out of the way of completion menu
+				direction_priority = function()
+					local lines_above_cursor = vim.fn.winline() - 1
+					local sig_win = require("blink.cmp.signature.window").win
+					local sig_lines = vim.api.nvim_buf_line_count(sig_win:get_buf())
+					if sig_lines > lines_above_cursor then
+						return { "s" }
+					end
+					return { "n" }
+				end,
 			},
 		},
 		keymap = {
