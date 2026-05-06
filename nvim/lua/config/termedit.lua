@@ -79,8 +79,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
 				once = true,
 				callback = function()
 					local edited = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
-					-- send ctrl-c followed by edited cmd
-					vim.fn.chansend(term_job_id, "\x03" .. table.concat(edited, "\n"))
+					-- send edited cmd
+					vim.api.nvim_chan_send(term_job_id, table.concat(edited, "\n"))
 					vim.api.nvim_set_current_win(term_win)
 					vim.cmd("startinsert!")
 				end,
@@ -96,6 +96,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
 
 			vim.defer_fn(function()
 				local cmd = get_current_cmd(buf, cmd_cursor)
+				-- send ctrl-c
+				vim.api.nvim_chan_send(term_job_id, "\x03")
 				open_split(cmd)
 			end, 20)
 		end
