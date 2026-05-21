@@ -27,6 +27,7 @@ return {
 					{ "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
 					"^().*()$",
 				},
+				-- TODO: 0.13 can remove this, use il/al instead
 				g = function() -- entire buffer
 					local from = { line = 1, col = 1 }
 					local to = {
@@ -38,14 +39,14 @@ return {
 
 				-- assignment
 				-- TODO: doesn't really behave as I want
-				h = ai.gen_spec.treesitter({
-					a = { "@assignment.lhs", "@pair.key" },
-					i = { "@assignment.lhs", "@pair.key" },
-				}),
-				l = ai.gen_spec.treesitter({
-					a = { "@assignment.rhs", "@pair.value" },
-					i = { "@assignment.rhs", "@pair.value" },
-				}),
+				-- h = ai.gen_spec.treesitter({
+				-- 	a = { "@assignment.lhs", "@pair.key" },
+				-- 	i = { "@assignment.lhs", "@pair.key" },
+				-- }),
+				-- l = ai.gen_spec.treesitter({
+				-- 	a = { "@assignment.rhs", "@pair.value" },
+				-- 	i = { "@assignment.rhs", "@pair.value" },
+				-- }),
 			},
 		}
 	end,
