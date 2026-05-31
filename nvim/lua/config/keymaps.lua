@@ -17,17 +17,15 @@ vim.keymap.set("n", "}", "}zz")
 -- 	end
 -- end
 -- vim.keymap.set("n", "p", indent_paste("p", '"'))
--- vim.keymap.set("x", "p", indent_paste('"_dP', '"')) -- don't yank on put
 --
 -- vim.keymap.set("n", "<leader>p", indent_paste('"+p', "+"))
--- vim.keymap.set("x", "<leader>p", indent_paste('"_d"+P', "+")) -- don't yank on put
 -- vim.keymap.set("n", "<leader>P", indent_paste('"+P', "+"))
 
 -- yank/paste from system clipboard
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>Y", '"+Y')
+vim.keymap.set("n", "<leader>Y", '"+y$')
 vim.keymap.set("n", "<leader>p", '"+p')
-vim.keymap.set({ "n", "x" }, "<leader>P", '"+P')
+vim.keymap.set("n", "<leader>P", '"+P')
 
 -- paste charwise on new line
 local function paste_on_new_line(cmd)
