@@ -1,4 +1,6 @@
 return {
 	"NeogitOrg/neogit",
-	opts = {},
+	keys = {
+		{ "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" },
+	},
 }
