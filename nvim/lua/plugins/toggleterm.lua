@@ -19,8 +19,9 @@ return {
 	opts = {
 		open_mapping = "<c-cr>",
 	},
-	config = function(_, opts)
-		require("toggleterm").setup(opts)
+	init = function()
+		vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>")
+
 		vim.api.nvim_create_autocmd("TermOpen", {
 			pattern = "term://*toggleterm#*",
 			callback = function()
@@ -53,8 +54,5 @@ return {
 				)
 			end,
 		})
-	end,
-	init = function()
-		vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>")
 	end,
 }
