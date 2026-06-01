@@ -11,6 +11,11 @@ if type -q nvim
     set -gx VISUAL "nvim"
 end
 
+# use homebrew programs instead of system-provided
+if test (uname) = Darwin && type -q brew
+    fish_add_path /opt/homebrew/bin
+end
+
 # Add uv tools to PATH
 fish_add_path $HOME/.local/bin
 
