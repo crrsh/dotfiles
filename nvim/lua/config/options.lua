@@ -50,3 +50,7 @@ vim.opt.autoread = true
 
 -- set a border for ui consistency
 vim.opt.winborder = "single"
+
+-- TODO: uncomment when available in neovim: https://github.com/vim/vim/issues/20049
+-- hide annoying messages
+-- vim.opt.shortmess:append("u")
