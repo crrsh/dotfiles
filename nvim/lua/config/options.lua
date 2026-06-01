@@ -47,3 +47,6 @@ vim.opt.cmdheight = 0
 
 -- update buffer content when modified externally
 vim.opt.autoread = true
+
+-- set a border for ui consistency
+vim.opt.winborder = "single"
