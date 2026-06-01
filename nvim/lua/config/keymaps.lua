@@ -44,10 +44,10 @@ vim.keymap.set("n", "[p", function()
 end)
 
 -- move between windows
-vim.keymap.set("n", "<c-h>", "<c-w>h")
-vim.keymap.set("n", "<c-j>", "<c-w>j")
-vim.keymap.set("n", "<c-k>", "<c-w>k")
-vim.keymap.set("n", "<c-l>", "<c-w>l")
+vim.keymap.set({ "n", "t" }, "<c-h>", "<cmd>wincmd h<cr>")
+vim.keymap.set({ "n", "t" }, "<c-j>", "<cmd>wincmd j<cr>")
+vim.keymap.set({ "n", "t" }, "<c-k>", "<cmd>wincmd k<cr>")
+vim.keymap.set({ "n", "t" }, "<c-l>", "<cmd>wincmd l<cr>")
 
 -- fullscreen a window
 -- TODO: may be able to use: https://github.com/neovim/neovim/pull/24507 to do it better
