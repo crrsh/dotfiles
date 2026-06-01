@@ -9,6 +9,7 @@ return {
 		formatters_by_ft = {
 			lua = { "stylua" },
 			python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+			go = { "gofmt", "goimports" },
 			markdown = { "injected" },
 			["_"] = { "trim_whitespace" },
 		},
