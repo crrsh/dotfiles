@@ -86,3 +86,11 @@ vim.keymap.set("n", "<esc>", function()
 	vim.cmd("nohlsearch")
 	vim.api.nvim_exec_autocmds("User", { pattern = "NoHlSearch" })
 end)
+
+-- move lines similar to vscode
+vim.keymap.set("n", "<a-j>", "<cmd>m .+1<cr>==")
+vim.keymap.set("n", "<a-k>", "<cmd>m .-2<cr>==")
+vim.keymap.set("x", "<a-j>", ":m '>+1<cr>gv=gv")
+vim.keymap.set("x", "<a-k>", ":m '<-2<cr>gv=gv")
+vim.keymap.set("i", "<a-j>", "<esc><cmd>m .+1<cr>==gi")
+vim.keymap.set("i", "<a-k>", "<esc><cmd>m .-2<cr>==gi")
