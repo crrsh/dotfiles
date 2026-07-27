@@ -5,7 +5,10 @@ return {
 	opts = {
 		space2 = { enable = true },
 		extensions = {
-			alpha = { after = true },
+			filetype = {
+				nft = { "snacks_picker_input" },
+			},
+			alpha = { alpha = true, after = true },
 		},
 	},
 }
