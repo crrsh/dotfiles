@@ -26,10 +26,20 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 	},
-	ui = { border = "rounded" },
+	ui = vim.o.winborder ~= "" and { border = vim.o.winborder } or {},
 	install = {
 		colorscheme = { vim.g.colors_name, "default" },
 	},
 	-- automatically check for plugin updates
 	checker = { enabled = true, notify = false },
+})
+
+-- Remove border from backdrop buffer
+-- can be removed after (https://github.com/folke/lazy.nvim/pull/2072)
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "lazy_backdrop",
+	callback = function(args)
+		local win = vim.fn.win_findbuf(args.buf)[1]
+		vim.api.nvim_win_set_config(win, { border = "none" })
+	end,
 })
