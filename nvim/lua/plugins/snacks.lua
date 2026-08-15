@@ -1,3 +1,32 @@
+local function grep_directory()
+	local cwd = vim.fn.getcwd()
+	local dirs = {}
+
+	if vim.fn.executable("fd") == 1 then
+		dirs = vim.fn.systemlist({ "fd", "--type", "d", "--hidden", "--exclude", ".git", ".", cwd })
+	elseif vim.fn.executable("find") == 1 then
+		-- stylua: ignore
+		  dirs = vim.fn.systemlist({ "find", cwd, "-mindepth", "1", "-type", "d", "-name", ".git", "-prune", "-o", "-type", "d", "-print" })
+	else
+		vim.notify("No directory scanner found (fd or find)", vim.log.levels.WARN)
+		return
+	end
+
+	local items = {}
+	for i, dir in ipairs(dirs) do
+		items[i] = { idx = i, file = dir, dir = true, text = dir }
+	end
+
+	Snacks.picker({
+		title = "Grep in directory",
+		items = items,
+		confirm = function(picker, item)
+			picker:close()
+			Snacks.picker.grep({ dirs = { item.file } })
+		end,
+	})
+end
+
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
@@ -56,6 +85,8 @@ return {
 		{ "<leader>ga", function() Snacks.picker.gh_actions() end, desc = "GitHub actions (all)" },
     -- ui
 		{ "<leader>uc", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
+    -- custom
+		{ "<leader>sG", grep_directory, desc = "Grep directory" },
 		-- LSP
     -- TODO: try these out before adding
 		-- { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
