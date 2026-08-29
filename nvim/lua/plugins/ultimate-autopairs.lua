@@ -8,7 +8,12 @@ return {
 			filetype = {
 				nft = { "snacks_picker_input" },
 			},
-			alpha = { alpha = true, after = true },
+			alpha = { after = true },
+		},
+		config_internal_pairs = {
+			{ '"', '"', alpha = true },
+			{ "'", "'", alpha = true },
+			{ "`", "`", alpha = true },
 		},
 	},
 }
