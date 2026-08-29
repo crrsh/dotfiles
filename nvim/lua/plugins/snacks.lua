@@ -70,7 +70,7 @@ return {
 		{ "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
 		{ "<leader>su", function() Snacks.picker.undo() end, desc = "Undo History" },
     -- git
-		{ "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
+		-- { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git Branches" },
 		{ "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
 		{ "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log Line" },
 		{ "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
