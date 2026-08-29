@@ -35,7 +35,7 @@ return {
   -- stylua: ignore
 	keys = {
 		{ "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
-		{ "<leader>/", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+		{ "<leader>/", function() Snacks.picker.lines({win = { preview = { wo = { cursorlineopt = "both" } } } }) end, desc = "Buffer Lines" },
 		{ "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" }, -- TODO: duplicate
 		{ "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" }, -- TODO: duplicate
 		{ "<leader>.", function() Snacks.picker.resume() end, desc = "Resume" },
