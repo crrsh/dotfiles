@@ -119,11 +119,29 @@ return {
 			},
 		},
 		image = {},
+		toggle = {
+			notify = function(state, t)
+				vim.api.nvim_echo({
+					{ state and "Enabled " or "Disabled " },
+					{ t.name, "Bold" },
+				}, false, {})
+			end,
+		},
 	},
 	init = function()
 		vim.api.nvim_set_hl(0, "SnacksInputNormal", { link = "NormalFloat" })
 		vim.api.nvim_set_hl(0, "SnacksInputBorder", { link = "FloatBorder" })
 		vim.api.nvim_set_hl(0, "SnacksInputTitle", { link = "FloatTitle" })
 		vim.api.nvim_set_hl(0, "SnacksInputIcon", { link = "FloatBorder" })
+
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "VeryLazy",
+			callback = function()
+				local zoom = Snacks.toggle.zoom()
+				zoom.opts.notify = false
+				zoom:map("<c-w><cr>")
+				zoom:map("<c-w><c-cr>")
+			end,
+		})
 	end,
 }

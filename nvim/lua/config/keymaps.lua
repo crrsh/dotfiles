@@ -49,10 +49,6 @@ vim.keymap.set({ "n", "t" }, "<c-j>", "<cmd>wincmd j<cr>")
 vim.keymap.set({ "n", "t" }, "<c-k>", "<cmd>wincmd k<cr>")
 vim.keymap.set({ "n", "t" }, "<c-l>", "<cmd>wincmd l<cr>")
 
--- fullscreen a window
--- TODO: may be able to use: https://github.com/neovim/neovim/pull/24507 to do it better
-vim.keymap.set("n", "<c-w><cr>", "<cmd>tab split<cr>")
-
 -- resizing windows
 -- TODO: probably just arrow keys?
 
