@@ -3,7 +3,9 @@ return {
 	event = "BufWritePre",
 	cmd = "ConformInfo",
 	keys = {
-		{ "<leader>cf", "<cmd>Format<cr>", mode = { "n", "x" }, silent = true, desc = "Format buffer or range" },
+		{ "<leader>cf", "<cmd>Format<cr>", mode = { "n", "x" }, desc = "Format buffer or range" },
+		{ "<leader>uf", "<cmd>AutoFormatToggle<cr>", desc = "Toggle auto format" },
+		{ "<leader>uF", "<cmd>AutoFormatToggle!<cr>", desc = "Toggle auto format (buffer)" },
 	},
 	opts = {
 		formatters_by_ft = {
@@ -35,31 +37,36 @@ return {
 			require("conform").format({ async = true, range = range })
 		end, { range = true, desc = "Format buffer or range" })
 
-		vim.api.nvim_create_user_command("FormatToggle", function(args)
+		vim.api.nvim_create_user_command("AutoFormatToggle", function(args)
 			local opt = vim.g
 			if args.bang then
 				opt = vim.b
 			end
 			opt.autoformat = opt.autoformat == false
-			local status = opt.autoformat and "on" or "off"
-			local bufname = args.bang and " [" .. vim.fn.expand("%:t") .. "]" or ""
-			vim.notify("Autoformat " .. status .. bufname, vim.log.levels.INFO)
-		end, { bang = true, desc = "Toggle autoformat" })
+			local chunks = {
+				{ opt.autoformat and "Enabled " or "Disabled " },
+				{ "Auto Format", "bold" },
+			}
+			if args.bang then
+				chunks[#chunks + 1] = { " [" .. vim.fn.expand("%:t") .. "]" }
+			end
+			vim.api.nvim_echo(chunks, false, {})
+		end, { bang = true, desc = "Toggle auto format" })
 
-		vim.api.nvim_create_user_command("FormatEnable", function(args)
+		vim.api.nvim_create_user_command("AutoFormatEnable", function(args)
 			if args.bang then
 				vim.b.autoformat = true
 			else
 				vim.g.autoformat = true
 			end
-		end, { bang = true, desc = "Enable autoformat" })
+		end, { bang = true, desc = "Enable auto format" })
 
-		vim.api.nvim_create_user_command("FormatDisable", function(args)
+		vim.api.nvim_create_user_command("AutoFormatDisable", function(args)
 			if args.bang then
 				vim.b.autoformat = false
 			else
 				vim.g.autoformat = false
 			end
-		end, { bang = true, desc = "Disable autoformat" })
+		end, { bang = true, desc = "Disable auto format" })
 	end,
 }
