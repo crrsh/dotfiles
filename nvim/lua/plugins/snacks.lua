@@ -141,6 +141,15 @@ return {
 				zoom.opts.notify = false
 				zoom:map("<c-w><cr>")
 				zoom:map("<c-w><c-cr>")
+
+				Snacks.toggle.diagnostics():map("<leader>ud")
+				Snacks.toggle.indent():map("<leader>ui")
+				Snacks.toggle.inlay_hints():map("<leader>uh")
+				Snacks.toggle.words():map("<leader>uW")
+				Snacks.toggle.treesitter():map("<leader>uT")
+
+				Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
+				Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
 			end,
 		})
 	end,
