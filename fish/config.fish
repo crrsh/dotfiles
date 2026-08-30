@@ -1,6 +1,7 @@
 status is-interactive; or return
 
 set -g fish_greeting
+set -g fish_transient_prompt 1
 
 if type -q nvim
     set -gx EDITOR nvim
@@ -27,6 +28,7 @@ if type -q direnv
 end
 
 fish_vi_key_bindings
+function fish_mode_prompt; end
 
 for mode in default insert
     bind -M $mode ctrl-p up-or-search
