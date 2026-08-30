@@ -1,6 +1,4 @@
-status is-interactive; or exit
-
-# Environment {{{
+status is-interactive; or return
 
 set -g fish_greeting
 
@@ -15,10 +13,6 @@ if test (uname) = Darwin && type -q brew
     fish_add_path /opt/homebrew/bin
 end
 
-# }}}
-
-# Integrations {{{
-
 if type -q fzf
     fzf --fish | source
 end
@@ -27,9 +21,10 @@ if type -q zoxide
     zoxide init fish | source
 end
 
-# }}}
-
-# Bindings {{{
+if type -q direnv
+    # set -g direnv_fish_mode disable_arrow
+    direnv hook fish | source
+end
 
 fish_vi_key_bindings
 
@@ -37,6 +32,7 @@ for mode in default insert
     bind -M $mode ctrl-p up-or-search
     bind -M $mode ctrl-n down-or-search
     bind -M $mode ctrl-f accept-autosuggestion
+    bind -M $mode ctrl-x,ctrl-e edit_command_buffer
 
     bind -M $mode ctrl-g suppress-autosuggestion
 
@@ -47,10 +43,6 @@ for mode in default insert
         bind -M $mode ctrl-r history-pager
     end
 end
-
-# }}}
-
-# Abbreviations {{{
 
 # git
 abbr -a g 'git'
@@ -82,6 +74,11 @@ abbr -a dcl 'docker rm (docker ps -aq); docker rmi (docker images -qf dangling=t
 abbr -a de 'docker exec'
 abbr -a db 'docker build'
 
+# docker compose
+abbr -a dc 'docker-compose'
+abbr -a dcu 'docker-compose up'
+abbr -a dcs 'docker-compose stop'
+
 # kubectl
 abbr -a k 'kubectl'
 
@@ -94,6 +91,5 @@ abbr -a uvl 'uv lock'
 abbr -a m 'make'
 abbr -a mc 'make -C'
 
-# }}}
 
 # vim: foldmethod=marker foldlevel=99
