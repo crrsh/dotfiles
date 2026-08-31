@@ -1,3 +1,5 @@
+local _filename
+
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-mini/mini.icons" },
@@ -8,6 +10,14 @@ return {
 			section_separators = { left = "", right = "" },
 		},
 		sections = {
+			lualine_c = {
+				{
+					function()
+						_filename = _filename or require("lualine.components.filename"):new({ path = 0 })
+						return vim.b.term_title or _filename:update_status()
+					end,
+				},
+			},
 			lualine_x = {
 				{
 					function()
