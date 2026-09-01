@@ -43,6 +43,12 @@ vim.keymap.set("n", "[p", function()
 	paste_on_new_line("[p")
 end)
 
+-- visually select last pasted
+vim.keymap.set("n", "gV", "`[v`]")
+
+-- search visual selection
+vim.keymap.set("x", "g/", "<Esc>/\\%V")
+
 -- move between windows
 vim.keymap.set({ "n", "t" }, "<c-h>", "<cmd>wincmd h<cr>")
 vim.keymap.set({ "n", "t" }, "<c-j>", "<cmd>wincmd j<cr>")
@@ -71,11 +77,6 @@ vim.keymap.set({ "n", "x", "o" }, "L", "$")
 -- treat wrapped lines as if they aren't
 vim.keymap.set({ "n", "x", "o" }, "j", "gj")
 vim.keymap.set({ "n", "x", "o" }, "k", "gk")
-
--- TODO: mainly thinking for escaping brackets but maybe tabout.nvim is better
--- move cursor in insert mode
-vim.keymap.set("i", "<c-h>", "<c-o>h")
-vim.keymap.set("i", "<c-l>", "<c-o>a")
 
 -- quickly disable hlsearch
 vim.keymap.set("n", "<esc>", function()
