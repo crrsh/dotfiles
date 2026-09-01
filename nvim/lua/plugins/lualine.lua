@@ -14,7 +14,7 @@ return {
 				{
 					function()
 						_filename = _filename or require("lualine.components.filename"):new({ path = 0 })
-						return vim.b.term_title or _filename:update_status()
+						return vim.b.term_name or vim.b.term_title or _filename:update_status()
 					end,
 				},
 			},
