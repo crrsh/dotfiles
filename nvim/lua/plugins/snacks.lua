@@ -87,6 +87,21 @@ return {
 		{ "<leader>uc", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
     -- custom
 		{ "<leader>sG", grep_directory, desc = "Grep directory" },
+    { 
+      "<leader>tt",
+      function()
+        Snacks.picker.buffers({
+        title = "Terminals",
+        sort_lastused = true,
+        filter = {
+          filter = function(item)
+            return item.buftype == "terminal"
+          end,
+          },
+        })
+      end,
+      desc = "Terminals",
+    },
 		-- LSP
     -- TODO: try these out before adding
 		-- { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
