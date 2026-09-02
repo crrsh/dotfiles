@@ -44,5 +44,12 @@ return {
 				require("lualine").refresh()
 			end,
 		})
+		vim.api.nvim_create_autocmd("TermRequest", {
+			callback = function()
+				vim.schedule(function()
+					require("lualine").refresh()
+				end)
+			end,
+		})
 	end,
 }
