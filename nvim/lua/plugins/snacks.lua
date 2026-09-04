@@ -57,22 +57,8 @@ return {
     -- ui
 		{ "<leader>uc", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
     -- custom
+		{ "<leader>tt", function() Snacks.picker.terminals() end, desc = "Terminals" },
 		{ "<leader>sG", function() Snacks.picker.grep_in_directory() end, desc = "Grep directory" },
-    { 
-      "<leader>tt",
-      function()
-        Snacks.picker.buffers({
-        title = "Terminals",
-        sort_lastused = true,
-        filter = {
-          filter = function(item)
-            return item.buftype == "terminal"
-          end,
-          },
-        })
-      end,
-      desc = "Terminals",
-    },
 		-- LSP
     -- TODO: try these out before adding
 		-- { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
@@ -119,6 +105,57 @@ return {
 					confirm = function(item)
 						Snacks.picker.grep({ dirs = { item.file } })
 					end,
+				},
+				terminals = {
+					finder = function()
+						local items = {}
+						for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+							if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == "terminal" then
+								local term_title = vim.b[buf].term_name
+								if not term_title or term_title == "" then
+									term_title = vim.b[buf].term_title
+								end
+								if not term_title or term_title == "" then
+									term_title = vim.api.nvim_buf_get_name(buf)
+								end
+								local item = { title = term_title, buf = buf, text = term_title }
+								items[#items + 1] = item
+							end
+						end
+						return items
+					end,
+					format = function(item)
+						local res = {}
+						res[#res + 1] = { string.format("%d", item.buf), "SnacksPickerBufNr" }
+						res[#res + 1] = { "   " }
+						res[#res + 1] = { item.text, "SnacksPickerFile" }
+						return res
+					end,
+					confirm = function(picker, item)
+						picker:close()
+						vim.api.nvim_set_current_buf(item.buf)
+						vim.wo.list = false
+						vim.wo.wrap = false
+						vim.wo.number = false
+						vim.wo.relativenumber = false
+						vim.wo.signcolumn = "no"
+						vim.wo.foldcolumn = "0"
+						vim.wo.statusline = ""
+						vim.schedule(function()
+							vim.b[item.buf].term_mode = true
+							vim.cmd.startinsert()
+						end)
+					end,
+					sort_lastused = true,
+					win = {
+						preview = {
+							wo = {
+								number = false,
+								relativenumber = false,
+								statusline = "",
+							},
+						},
+					},
 				},
 			},
 		},
