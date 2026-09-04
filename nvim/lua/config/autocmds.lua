@@ -28,6 +28,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd("TermOpen", {
 	group = term,
 	desc = "Open terminal in insert mode",
+	pattern = "term://*",
 	callback = function()
 		vim.b.term_mode = true
 		vim.cmd.startinsert()
