@@ -9,6 +9,4 @@ require("config.keymaps")
 require("config.autocmds")
 require("config.commands")
 
-require("config.termedit")
-
 vim.cmd.colorscheme("catppuccin-nvim")
