@@ -5,13 +5,12 @@ return {
 		{
 			"-",
 			function()
-				local mini_files = require("mini.files")
-				if not mini_files.close() then
+				if not MiniFiles.close() then
 					local path = vim.api.nvim_buf_get_name(0)
 					if vim.fn.filereadable(path) == 0 then
 						path = vim.fn.fnamemodify(path, ":h")
 					end
-					mini_files.open(path, false)
+					MiniFiles.open(path, false)
 				end
 			end,
 			desc = "Toggle mini.files (target buf dir)",
@@ -19,7 +18,7 @@ return {
 		{
 			"<leader>-",
 			function()
-				require("mini.files").open(vim.uv.cwd(), false)
+				MiniFiles.open(vim.uv.cwd(), false)
 			end,
 			desc = "Open mini.files (target cwd)",
 		},

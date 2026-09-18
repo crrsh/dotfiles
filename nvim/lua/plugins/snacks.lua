@@ -107,6 +107,26 @@ return {
 					end,
 				},
 				terminals = {
+					actions = {
+						terminal_rename = function(picker, item)
+							if not item then
+								return
+							end
+
+							vim.ui.input({
+								prompt = "Terminal name: ",
+								default = vim.b[item.buf].term_name,
+							}, function(name)
+								if name == nil then
+									return
+								end
+
+								name = vim.trim(name)
+								vim.b[item.buf].term_name = name ~= "" and name or nil
+								picker:find()
+							end)
+						end,
+					},
 					finder = function()
 						local items = {}
 						for _, buf in ipairs(vim.api.nvim_list_bufs()) do
@@ -148,6 +168,21 @@ return {
 					end,
 					sort_lastused = true,
 					win = {
+						input = {
+							keys = {
+								["<c-r>"] = {
+									"terminal_rename",
+									mode = { "n", "i" },
+									nowait = true,
+									desc = "Rename Terminal",
+								},
+							},
+						},
+						list = {
+							keys = {
+								["<c-r>"] = { "terminal_rename", nowait = true, desc = "Rename Terminal" },
+							},
+						},
 						preview = {
 							wo = {
 								number = false,
