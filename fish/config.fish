@@ -94,4 +94,14 @@ abbr -a m 'make'
 abbr -a mc 'make -C'
 
 
-# vim: foldmethod=marker foldlevel=99
+if not functions -q fisher
+    curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+    fisher update >/dev/null
+end
+
+set -g hydro_multiline true
+
+if set -q NVIM
+    set -g _hydro_skip_git_prompt 1
+    set -g $_hydro_git ""
+end
