@@ -49,11 +49,11 @@ return {
 		{ "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git Diff (Hunks)" }, 
 		{ "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" }, 
     -- gh
-		{ "<leader>gi", function() Snacks.picker.gh_issue() end, desc = "GitHub Issues (open)" },
-		{ "<leader>gI", function() Snacks.picker.gh_issue({ state = "all" }) end, desc = "GitHub Issues (all)" },
-		{ "<leader>gp", function() Snacks.picker.gh_pr() end, desc = "GitHub Pull Requests (open)" },
-		{ "<leader>gP", function() Snacks.picker.gh_pr({ state = "all" }) end, desc = "GitHub Pull Requests (all)" },
-		{ "<leader>ga", function() Snacks.picker.gh_actions() end, desc = "GitHub actions (all)" },
+		{ "<leader>ghi", function() Snacks.picker.gh_issue() end, desc = "GitHub Issues (open)" },
+		{ "<leader>ghI", function() Snacks.picker.gh_issue({ state = "all" }) end, desc = "GitHub Issues (all)" },
+		{ "<leader>ghp", function() Snacks.picker.gh_pr() end, desc = "GitHub Pull Requests (open)" },
+		{ "<leader>ghP", function() Snacks.picker.gh_pr({ state = "all" }) end, desc = "GitHub Pull Requests (all)" },
+		{ "<leader>gha", function() Snacks.picker.gh_actions() end, desc = "GitHub actions (all)" },
     -- ui
 		{ "<leader>uc", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
     -- custom
