@@ -1,5 +1,6 @@
 # fish
 fish/fish_variables
+fish/fisher/
 
 # nvim
 nvim/lazy-lock.json
