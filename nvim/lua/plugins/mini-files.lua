@@ -24,6 +24,7 @@ return {
 		},
 	},
 	opts = {
+		use_as_default_explorer = false,
 		mappings = {
 			go_in = "L",
 			go_in_plus = "l",
@@ -32,4 +33,14 @@ return {
 			width_focus = 30,
 		},
 	},
+	init = function()
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "MiniFilesExplorerOpen",
+			callback = function()
+				MiniFiles.set_bookmark("c", vim.fn.stdpath("config"), { desc = "Config" })
+				MiniFiles.set_bookmark("w", vim.fn.getcwd, { desc = "Working directory" })
+				MiniFiles.set_bookmark("~", "~", { desc = "Home directory" })
+			end,
+		})
+	end,
 }
