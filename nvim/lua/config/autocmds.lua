@@ -34,3 +34,11 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		vim.cmd.startinsert()
 	end,
 })
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking",
+	group = vim.api.nvim_create_augroup("highlightyank", { clear = true }),
+	callback = function()
+		vim.hl.on_yank({ timeout = 100 })
+	end,
+})
