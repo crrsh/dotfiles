@@ -77,6 +77,24 @@ return {
 				file = false,
 			},
 			sources = {
+				explorer = {
+					-- Snacks' WinEnter/DirChanged handlers fire for explorers on every tab, so each
+					-- one's main window and cwd follow whichever tab is active. Only let them apply
+					-- on the explorer's own tab. Patches internals; drop if fixed upstream.
+					on_show = function(picker)
+						local update, set_cwd = picker._main.update, picker.set_cwd
+						picker._main.update = function(main)
+							if picker:on_current_tab() then
+								update(main)
+							end
+						end
+						picker.set_cwd = function(p, cwd)
+							if p:on_current_tab() then
+								set_cwd(p, cwd)
+							end
+						end
+					end,
+				},
 				grep_in_directory = {
 					finder = function()
 						-- TODO: needs to support hidden or ignored folders
