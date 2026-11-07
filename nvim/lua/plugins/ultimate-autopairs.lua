@@ -2,6 +2,7 @@ return {
 	"altermo/ultimate-autopair.nvim",
 	event = { "InsertEnter", "CmdlineEnter" },
 	branch = "v0.6",
+	enabled = false, -- trying out blink.pairs
 	opts = {
 		space2 = { enable = true },
 		extensions = {
