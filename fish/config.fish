@@ -43,6 +43,8 @@ for mode in default insert
 
     bind -M $mode ctrl-enter accept-autosuggestion execute
 
+    bind -M $mode ctrl-z 'fg 2>/dev/null; commandline -f repaint'
+
     # Avoid overwriting fzf ctrl-r if available.
     if not type -q fzf
         bind -M $mode ctrl-r history-pager
@@ -67,7 +69,10 @@ abbr -a gl 'git log'
 
 # docker
 abbr -a d 'docker'
-abbr -a dl 'docker ps -lq' # display id of latest created container
+abbr -a did 'docker ps -lq' # display id of latest created container
+abbr -a dl 'docker logs -f'
+abbr -a dll 'docker logs -f (docker ps -lq)' # follow latest container
+abbr -a dps 'docker ps'
 abbr -a dim 'docker images'
 abbr -a drma 'docker rm (docker ps -aq)' # delete all stopped containers
 abbr -a drml 'docker rm (docker ps -lq)' # delete last container
@@ -76,13 +81,13 @@ abbr -a dsl 'docker stop (docker ps -lq)' # stop last container
 abbr -a drmdi 'docker rmi (docker images -qf dangling=true)' # delete dangling images
 abbr -a dpid 'docker inspect --format \'{{.State.Pid}}\' (docker ps -lq)'
 abbr -a dcl 'docker rm (docker ps -aq); docker rmi (docker images -qf dangling=true)' # clean
-abbr -a de 'docker exec'
+abbr -a de 'docker exec -it'
+abbr -a dx 'docker run --rm -it'
 abbr -a db 'docker build'
 
 # docker compose
-abbr -a dc 'docker-compose'
-abbr -a dcu 'docker-compose up'
-abbr -a dcs 'docker-compose stop'
+abbr -a dc 'docker compose'
+abbr -a dcu 'docker compose up'
 
 # kubectl
 abbr -a k 'kubectl'
@@ -95,6 +100,19 @@ abbr -a uvl 'uv lock'
 # make
 abbr -a m 'make'
 abbr -a mc 'make -C'
+
+# opencode
+abbr -a oc 'opencode'
+
+# pipes
+abbr -a --position anywhere L '| less'
+abbr -a --position anywhere G '| rg'
+for clip in pbcopy wl-copy 'xclip -selection clipboard'
+    if type -q (string split ' ' -- $clip)[1]
+        abbr -a --position anywhere C "| $clip"
+        break
+    end
+end
 
 
 if not functions -q fisher
