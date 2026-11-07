@@ -1,3 +1,6 @@
+# Resolve symlinked ~/.config/fish back to the repo root.
+set -gx DOTFILES (path dirname (path dirname (path resolve (status filename))))
+
 status is-interactive; or return
 
 set -g fish_greeting
